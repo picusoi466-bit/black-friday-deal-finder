@@ -15,6 +15,9 @@
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+//
+// The entry's 30 deals live in app/data.js, its 3 screenshots in screenshots/
+// (1-deals.jpg is the cover, 3-deal-phone.jpg the phone view).
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
