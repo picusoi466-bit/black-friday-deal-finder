@@ -25,7 +25,8 @@
 //
 // The entry's 80 deals live in app/data.js, its 4 screenshots in screenshots/
 // (1-deals.jpg is the cover, 2-deal.jpg a deal detail with the comparison
-// table, 3-deal-phone.jpg the phone view, 4-filtered.jpg the 50%-off filter).
+// table, 3-deal-phone.jpg the phone view, 4-filtered.jpg the 50%-off filter
+// applied: 27 of 80 deals, every one 60% off or more).
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
