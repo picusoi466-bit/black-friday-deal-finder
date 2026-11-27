@@ -197,6 +197,11 @@ main { padding: 28px 20px 40px; }
   font-weight: 600;
 }
 
+.also {
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .verdict {
   align-self: flex-start;
   margin-top: auto;
@@ -240,6 +245,43 @@ main { padding: 28px 20px 40px; }
 
 .detail dt { font-weight: 700; }
 .detail dd { margin: 0; }
+
+.compare { margin: 0 0 24px; }
+
+.compare h2 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.compare table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.compare th,
+.compare td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.compare th { color: var(--muted); font-size: 13px; }
+
+.compare td.price { font-weight: 800; white-space: nowrap; }
+
+.compare tr.cheapest td { background: var(--green-bg); }
+
+.cheapest-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
 
 .cta a {
   display: inline-block;

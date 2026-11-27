@@ -13,7 +13,17 @@ import { deal, list, missing, rows } from './views.js';
 
 const app = document.getElementById('app');
 
-const state = { query: '', category: 'all', store: 'all', discount: 'any', sort: 'discount' };
+// The list opens on "Best deals first": strongest verdict, then biggest discount, then biggest saving.
+// A filtered view can be shared as a link: ?q=oled&category=TVs&store=Amazon&discount=50&sort=best
+// presets the search and filters on load.
+const params = new URLSearchParams(location.search);
+const state = {
+  query: params.get('q') || '',
+  category: params.get('category') || 'all',
+  store: params.get('store') || 'all',
+  discount: params.get('discount') || 'any',
+  sort: params.get('sort') || 'best',
+};
 
 function renderList() {
   app.innerHTML = list(deals, state);
@@ -47,7 +57,7 @@ function render() {
   const footerText = document.querySelector('footer .wrap');
   if (footerText) {
     const when = new Date(CHECKED_AT).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' });
-    footerText.textContent = `Prices checked ${when} UTC on 27 November 2026. Prices may change or sell out — always check the store page before you pay.`;
+    footerText.textContent = `Deals checked 27 November 2026, latest ${when} UTC; each deal shows its own check time. Prices may change or sell out — always check the store page before you pay.`;
   }
   window.scrollTo(0, 0);
   window.__shotReady = true;
