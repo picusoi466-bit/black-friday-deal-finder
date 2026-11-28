@@ -95,10 +95,19 @@ export function list(deals, state) {
   const categories = [...new Set(deals.map((d) => d.category))].sort();
   const stores = [...new Set(deals.map((d) => d.store))].sort();
   const compared = deals.filter((d) => d.also && d.also.length > 0).length;
+  // The top deal of the current list gets a banner of its own, so the best deal is unmissable.
+  const top = applyFilters(deals, state)[0];
+  const feature = top ? `<section class="feature">
+  <span class="badge">${percentOff(top)}% off</span>
+  <span class="feature-title">Top deal: ${escape(top.title)}</span>
+  <span class="feature-price">${usd(top.price)} <s>${usd(top.was)}</s> <span class="save">save ${usd(saved(top))}</span></span>
+  <a class="feature-link" href="#/deal/${encodeURIComponent(top.id)}">See the top deal &rarr;</a>
+</section>` : '';
   return `<section class="hero">
   <h1>Black Friday, checked deal by deal</h1>
   <p class="lede">${deals.length} real deals from ${stores.length} stores, each with its sale price, usual price, store link and the time it was checked. Every deal carries a verdict — <strong>New low</strong>, <strong>Strong price</strong>, <strong>Routine sale</strong> or <strong>Inflated</strong> — with the evidence. ${compared} products are compared across stores, so you can see the cheapest place to buy.</p>
 </section>
+${feature}
 <section class="controls" aria-label="Search and filter deals">
   <label class="search">Search <input id="q" type="search" placeholder="Try “OLED”, “LEGO” or “Amazon”…" value="${escape(state.query)}"></label>
   <label>Category <select id="category">
