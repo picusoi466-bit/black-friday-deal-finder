@@ -1,32 +1,34 @@
-// Black Friday Deal Finder v2 — make.fun entry for black-friday-deal-finder-01.
+// Black Friday Deal Finder v3 — make.fun entry for black-friday-deal-finder-01.
 //
 // The site is this directory's app/ folder: plain static files a browser opens
-// at app/index.html (ES modules, CSS, no build step), its 80 deals held in its
-// own files (app/data.js), each deal checked by the agent on 27 November 2026
-// with its sale price, usual price, store link, check time, source and a
-// verdict with one line of evidence (the first 30 checked at 12:30 UTC, 50
-// more added for v2 at 21:30 UTC). Nothing the site runs, styles or shows
-// loads over the network, and each deal links out to its store. The list
-// sorts best deals first (verdict strength, then discount, then dollars
-// saved), and 17 products are compared across stores: a deal card names the
-// cheaper store, and the detail page shows the same product's prices side by
-// side with the cheapest highlighted. Search and filters (category, store,
-// discount) work from the address bar too, so a filtered view can be shared
-// as a link. The program hands it in: it copies app/ and screenshots/ from
-// beside this file to /output and writes /output/dossier.json, the summary
-// the judge reads (the screenshots, the first load's files and bytes, and
-// the source), with the vendored make.fun library. Leave
-// vendor/makefun-frontend.ts as it is: the scorer requires dossier.json to be
-// byte for byte what its own copy writes.
+// at app/index.html (ES modules, CSS, no build step), its 129 deals held in its
+// own files (app/data.js), each deal checked by the agent on 27-28 November
+// 2026 with its sale price, usual price, store link, check time, source and a
+// verdict with one line of evidence (the first 30 checked Nov 27 at 12:30 UTC,
+// 50 more added for v2 at 21:30 UTC, 49 more added for v3 on Nov 28 at
+// 01:30 UTC). Nothing the site runs, styles or shows loads over the network,
+// and each deal links out to its store. The list sorts best deals first
+// (verdict strength, then discount, then dollars saved), and 22 products are
+// compared across stores: a deal card names the cheaper store, and the detail
+// page shows the same product's prices side by side with the cheapest
+// highlighted. Search and filters (category, store, discount) work from the
+// address bar too, so a filtered view can be shared as a link. The program
+// hands it in: it copies app/ and screenshots/ from beside this file to
+// /output and writes /output/dossier.json, the summary the judge reads (the
+// screenshots, the first load's files and bytes, and the source), with the
+// vendored make.fun library. Leave vendor/makefun-frontend.ts as it is: the
+// scorer requires dossier.json to be byte for byte what its own copy writes.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 //
-// The entry's 80 deals live in app/data.js, its 4 screenshots in screenshots/
+// The entry's 129 deals live in app/data.js, its 4 screenshots in screenshots/
 // (1-deals.jpg is the cover, 2-deal.jpg a deal detail with the comparison
 // table, 3-deal-phone.jpg the phone view, 4-filtered.jpg the 50%-off filter
-// applied: 27 of 80 deals, every one 60% off or more).
+// applied: 37 of 129 deals, every one 50% off or more). Verdicts: 25 New low,
+// 99 Strong price, 5 Routine sale. 10 stores, 15 categories. Round 2 rank:
+// 538 of 5,014 — v3 aims higher before the round 3 cutoff (19:42 WIB 28 Nov).
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

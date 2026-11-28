@@ -6,6 +6,7 @@ const usd = (n) => `$${Number(n).toLocaleString('en-US', { minimumFractionDigits
 const percentOff = (d) => Math.round((1 - d.price / d.was) * 100);
 const saved = (d) => d.was - d.price;
 const day = (iso) => new Date(iso).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' }) + ' UTC';
+const shortDay = (iso) => new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 const verdictClass = (v) =>
   v === 'New low' ? 'verdict-new'
   : v === 'Strong price' ? 'verdict-strong'
@@ -73,6 +74,7 @@ export function card(d) {
     <span class="card-title">${escape(d.title)}</span>
     <span class="card-meta">${escape(d.store)} &middot; ${escape(d.category)}</span>
     <span class="card-price">${usd(d.price)} <s>${usd(d.was)}</s> <span class="save">save ${usd(saved(d))}</span></span>
+    <span class="checked">Checked ${shortDay(d.checked)}</span>
     ${alsoLine}
     <span class="verdict ${verdictClass(d.verdict)}">${escape(d.verdict)}</span>
   </a>
@@ -95,7 +97,7 @@ export function list(deals, state) {
   const compared = deals.filter((d) => d.also && d.also.length > 0).length;
   return `<section class="hero">
   <h1>Black Friday, checked deal by deal</h1>
-  <p class="lede">${deals.length} real deals from ${stores.length} stores, each with its sale price, usual price, store link and the time it was checked. Every deal carries a verdict: <strong>New low</strong>, <strong>Strong price</strong>, <strong>Routine sale</strong> or <strong>Inflated</strong> — with the evidence, so you can judge the judge. ${compared} products are compared across stores, so you can see the cheapest place to buy.</p>
+  <p class="lede">${deals.length} real deals from ${stores.length} stores, each with its sale price, usual price, store link and the time it was checked. Every deal carries a verdict — <strong>New low</strong>, <strong>Strong price</strong>, <strong>Routine sale</strong> or <strong>Inflated</strong> — with the evidence. ${compared} products are compared across stores, so you can see the cheapest place to buy.</p>
 </section>
 <section class="controls" aria-label="Search and filter deals">
   <label class="search">Search <input id="q" type="search" placeholder="Try “OLED”, “LEGO” or “Amazon”…" value="${escape(state.query)}"></label>

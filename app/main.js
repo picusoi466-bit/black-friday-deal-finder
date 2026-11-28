@@ -54,10 +54,11 @@ function render() {
     document.title = 'Black Friday Deal Finder';
     renderList();
   }
+  // The footer names the day the deals were last checked; the time comes from data.js.
   const footerText = document.querySelector('footer .wrap');
   if (footerText) {
     const when = new Date(CHECKED_AT).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' });
-    footerText.textContent = `Deals checked 27 November 2026, latest ${when} UTC; each deal shows its own check time. Prices may change or sell out — always check the store page before you pay.`;
+    footerText.textContent = `Deals checked 28 November 2026, latest ${when} UTC; each deal shows its own check time. Prices may change or sell out — always check the store page before you pay.`;
   }
   window.scrollTo(0, 0);
   window.__shotReady = true;
